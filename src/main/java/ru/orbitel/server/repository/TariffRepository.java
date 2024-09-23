@@ -16,5 +16,7 @@ public interface TariffRepository {
     List<Tariff> findAll();
 
 
+    List<Tariff> findAll(Tariff tariff);
+
     int deleteAll();
 }

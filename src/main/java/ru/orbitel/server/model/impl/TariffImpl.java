@@ -47,6 +47,11 @@ public class TariffImpl implements TariffRepository {
     }
 
     @Override
+    public List<Tariff> findAll(Tariff tariff) {
+        return jdbcTemplate.queryForList("SELECT * FROM tariffs", Tariff.class);
+    }
+
+    @Override
     public int deleteAll() {
         return 0;
     }
