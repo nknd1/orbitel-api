@@ -21,8 +21,8 @@ public class TariffImpl implements TariffRepository {
     @Override
     public int save(Tariff tariff) {
         return jdbcTemplate.update("INSERT INTO tariffs (tariff_name, price_per_month, speed ) VALUES (?,?,?)",
-                tariff.getTariff_name(),
-                tariff.getPrice_per_month(),
+                tariff.getTariffName(),
+                tariff.getPricePerMonth(),
                 tariff.getSpeed());
     }
 
@@ -32,12 +32,12 @@ public class TariffImpl implements TariffRepository {
     }
 
     @Override
-    public Tariff findById(Long tariff_id) {
+    public Tariff findById(Long tariffId) {
         return null;
     }
 
     @Override
-    public int deleteById(Long tariff_id) {
+    public int deleteById(Long tariffId) {
         return 0;
     }
 

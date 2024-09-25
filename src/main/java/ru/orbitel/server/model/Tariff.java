@@ -2,37 +2,41 @@ package ru.orbitel.server.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 
-
+@Table(name = "tariffs")
 public class Tariff {
-    private long tariff_id;
-    private String tariff_name;
-    private int price_per_month;
-    private String speed;
+   @Id
+   private @Column("tariff_id") long tariffId;
+    private @Column("tariff_name") String tariffName;
+    private @Column("tariff_price") int pricePerMonth;
+    private @Column ("speed") String speed;
 
-    public void setTariff_id(long tariff_id) {
-        this.tariff_id = tariff_id;
+    public void setTariffId(long tariffId) {
+        this.tariffId = tariffId;
     }
 
-    public long getTariff_id() {
-        return tariff_id;
+    public long getTariff() {
+        return tariffId;
     }
 
-    public String getTariff_name() {
-        return tariff_name;
+    public String getTariffName() {
+        return tariffName;
     }
 
-    public void setTariff_name(String tariff_name) {
-        this.tariff_name = tariff_name;
+    public void setTariffName(String tariffName) {
+        this.tariffName = tariffName;
     }
 
-    public int getPrice_per_month() {
-        return price_per_month;
+    public int getPricePerMonth() {
+        return pricePerMonth;
     }
 
-    public void setPrice_per_month(int price_per_month) {
-        this.price_per_month = price_per_month;
+    public void setPricePerMonth(int pricePerMonth) {
+        this.pricePerMonth = pricePerMonth;
     }
 
     public String getSpeed() {
@@ -44,30 +48,30 @@ public class Tariff {
     }
 
     public Tariff(String tariffName) {
-        // TODO document why this constructor is empty
+
     }
 
-    public Tariff(long tariff_id, String tariff_name, int price_per_month, String speed) {
-        this.tariff_id = tariff_id;
-        this.tariff_name = tariff_name;
-        this.price_per_month = price_per_month;
+    public Tariff(long tariffId, String tariffName, int pricePerMonth, String speed) {
+        this.tariffId = tariffId;
+        this.tariffName = tariffName;
+        this.pricePerMonth = pricePerMonth;
         this.speed = speed;
     }
     @JsonCreator
-    public Tariff(@JsonProperty String tariff_name,
-                  @JsonProperty int price_per_month,
+    public Tariff(@JsonProperty String tariffName,
+                  @JsonProperty int pricePerMonth,
                   @JsonProperty String speed) {
-        this.tariff_name = tariff_name;
-        this.price_per_month = price_per_month;
+        this.tariffName = tariffName;
+        this.pricePerMonth = pricePerMonth;
         this.speed = speed;
     }
 
     @Override
     public String toString() {
         return "Tariff{" +
-                "tariff_id=" + tariff_id +
-                ", tariff_name='" + tariff_name + '\'' +
-                ", price_per_month=" + price_per_month +
+                "tariff_id=" + tariffId +
+                ", tariff_name='" + tariffName + '\'' +
+                ", price_per_month=" + pricePerMonth +
                 ", speed='" + speed + '\'' +
                 '}';
     }
