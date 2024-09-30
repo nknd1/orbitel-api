@@ -1,5 +1,6 @@
 package ru.orbitel.server.repository;
 
+
 import ru.orbitel.server.model.Tariff;
 
 import java.util.List;
@@ -14,9 +15,6 @@ public interface TariffRepository {
     int deleteById(Long tariff_id);
 
     List<Tariff> findAll();
-
-
-    List<Tariff> findAll(Tariff tariff);
 
     int deleteAll();
 }

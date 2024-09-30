@@ -2,12 +2,11 @@ package ru.orbitel.server.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.orbitel.server.model.Tariff;
 import ru.orbitel.server.repository.TariffRepository;
 
+import java.util.List;
 
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -22,25 +21,10 @@ public class TariffController {
     public TariffController(TariffRepository tariffRepository) {
         this.tariffRepository = tariffRepository;
     }
-
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/tariffs")
-    public ResponseEntity<?> getTariffs(@RequestBody Tariff tariff) {
-        try {
-            tariffRepository.findAll();
-            return new ResponseEntity<>(tariffRepository.findAll(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Tariffs not found", HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @PostMapping("/tariffs")
-    public ResponseEntity<String> createTariff(@RequestBody Tariff tariff) {
-        try {
-            tariffRepository.save(new Tariff(tariff.getTariffName(), tariff.getPricePerMonth(), tariff.getSpeed()));
-            return new ResponseEntity<>("Tariff created", HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Tariff not created", HttpStatus.BAD_REQUEST);
-        }
+    List<Tariff> getTariffs() {
+        return tariffRepository.findAll();
     }
 }
 

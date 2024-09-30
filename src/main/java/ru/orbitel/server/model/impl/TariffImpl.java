@@ -2,7 +2,9 @@ package ru.orbitel.server.model.impl;
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import ru.orbitel.server.RowMapper.TariffRowMapper;
 import ru.orbitel.server.model.Tariff;
 import ru.orbitel.server.repository.TariffRepository;
 
@@ -18,12 +20,19 @@ public class TariffImpl implements TariffRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
+
+    RowMapper<Tariff> tariffRowMapper = (rs, rowNum) ->
+         new Tariff(
+                rs.getLong("tariff_id"),
+                rs.getString("tariff_name"),
+                rs.getInt("price_per_month"),
+                rs.getString("speed"));
+
+
     @Override
     public int save(Tariff tariff) {
-        return jdbcTemplate.update("INSERT INTO tariffs (tariff_name, price_per_month, speed ) VALUES (?,?,?)",
-                tariff.getTariffName(),
-                tariff.getPricePerMonth(),
-                tariff.getSpeed());
+        return 0;
     }
 
     @Override
@@ -41,14 +50,12 @@ public class TariffImpl implements TariffRepository {
         return 0;
     }
 
-    @Override
-    public List<Tariff> findAll() {
-        return List.of();
-    }
 
     @Override
-    public List<Tariff> findAll(Tariff tariff) {
-        return jdbcTemplate.queryForList("SELECT * FROM tariffs", Tariff.class);
+    public List<Tariff> findAll() {
+        var sql = "SELECT tariff_id, tariff_name, price_per_month, speed FROM tariffs";
+        return jdbcTemplate.query(sql, tariffRowMapper);
+
     }
 
     @Override

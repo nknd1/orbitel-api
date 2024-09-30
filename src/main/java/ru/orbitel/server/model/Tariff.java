@@ -11,15 +11,15 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Tariff {
    @Id
    private @Column("tariff_id") long tariffId;
-    private @Column("tariff_name") String tariffName;
-    private @Column("tariff_price") int pricePerMonth;
-    private @Column ("speed") String speed;
+   private @Column("tariff_name") String tariffName;
+   private @Column("tariff_price") int pricePerMonth;
+   private @Column ("speed") String speed;
 
     public void setTariffId(long tariffId) {
         this.tariffId = tariffId;
     }
 
-    public long getTariff() {
+    public long getTariffId() {
         return tariffId;
     }
 
@@ -47,20 +47,14 @@ public class Tariff {
         this.speed = speed;
     }
 
-    public Tariff(String tariffName) {
+    public Tariff() {
 
     }
 
-    public Tariff(long tariffId, String tariffName, int pricePerMonth, String speed) {
-        this.tariffId = tariffId;
-        this.tariffName = tariffName;
-        this.pricePerMonth = pricePerMonth;
-        this.speed = speed;
-    }
     @JsonCreator
-    public Tariff(@JsonProperty String tariffName,
-                  @JsonProperty int pricePerMonth,
-                  @JsonProperty String speed) {
+    public Tariff(@JsonProperty Long tariffId, @JsonProperty String tariffName, @JsonProperty int pricePerMonth, @JsonProperty String speed)
+    {
+        this.tariffId = tariffId;
         this.tariffName = tariffName;
         this.pricePerMonth = pricePerMonth;
         this.speed = speed;
