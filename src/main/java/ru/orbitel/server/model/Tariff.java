@@ -1,7 +1,5 @@
 package ru.orbitel.server.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -49,18 +47,19 @@ public class Tariff {
         this.speed = speed;
     }
 
-    public Tariff() {
 
-    }
-
-    @JsonCreator
-    public Tariff(@JsonProperty Long tariffId, @JsonProperty String tariffName, @JsonProperty BigDecimal pricePerMonth, @JsonProperty String speed)
+    public Tariff(Long tariffId, String tariffName, BigDecimal pricePerMonth, String speed)
     {
         this.tariffId = tariffId;
         this.tariffName = tariffName;
         this.pricePerMonth = pricePerMonth;
         this.speed = speed;
     }
+
+    public Tariff() {
+    }
+
+
 
     @Override
     public String toString() {
