@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import ru.orbitel.server.model.Tariff;
-import ru.orbitel.server.repository.TariffRepository;
+import ru.orbitel.server.service.TariffService;
 
 import java.util.List;
 
@@ -16,15 +16,17 @@ public class TariffController {
 
     Logger logger = LoggerFactory.getLogger(TariffController.class);
 
-    private final TariffRepository tariffRepository;
+   private final TariffService tariffService;
 
-    public TariffController(TariffRepository tariffRepository) {
-        this.tariffRepository = tariffRepository;
+    public TariffController(TariffService tariffService) {
+        this.tariffService = tariffService;
     }
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/tariffs")
     List<Tariff> getTariffs() {
-        return tariffRepository.findAll();
+        return tariffService.getTariffs();
     }
+
 }
 

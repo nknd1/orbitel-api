@@ -6,13 +6,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.math.BigDecimal;
+
 
 @Table(name = "tariffs")
 public class Tariff {
    @Id
    private @Column("tariff_id") long tariffId;
    private @Column("tariff_name") String tariffName;
-   private @Column("tariff_price") int pricePerMonth;
+   private @Column("tariff_price") BigDecimal pricePerMonth;
    private @Column ("speed") String speed;
 
     public void setTariffId(long tariffId) {
@@ -31,11 +33,11 @@ public class Tariff {
         this.tariffName = tariffName;
     }
 
-    public int getPricePerMonth() {
+    public BigDecimal getPricePerMonth() {
         return pricePerMonth;
     }
 
-    public void setPricePerMonth(int pricePerMonth) {
+    public void setPricePerMonth(BigDecimal pricePerMonth) {
         this.pricePerMonth = pricePerMonth;
     }
 
@@ -52,7 +54,7 @@ public class Tariff {
     }
 
     @JsonCreator
-    public Tariff(@JsonProperty Long tariffId, @JsonProperty String tariffName, @JsonProperty int pricePerMonth, @JsonProperty String speed)
+    public Tariff(@JsonProperty Long tariffId, @JsonProperty String tariffName, @JsonProperty BigDecimal pricePerMonth, @JsonProperty String speed)
     {
         this.tariffId = tariffId;
         this.tariffName = tariffName;
