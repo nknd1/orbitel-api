@@ -1,4 +1,4 @@
-package ru.orbitel.server.model.impl;
+package ru.orbitel.server.impl;
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
