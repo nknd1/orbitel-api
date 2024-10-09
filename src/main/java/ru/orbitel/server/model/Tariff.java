@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 
 @Table(name = "tariffs")
 public class Tariff {
-   @Id
-   private @Column("tariff_id") long tariffId;
-   private @Column("tariff_name") String tariffName;
-   private @Column("tariff_price") BigDecimal pricePerMonth;
-   private @Column ("speed") String speed;
+    @Id
+    private @Column("tariff_id") long tariffId;
+    private @Column("tariff_name") String tariffName;
+    private @Column("tariff_price") BigDecimal pricePerMonth;
+    private @Column("speed") String speed;
 
     public void setTariffId(long tariffId) {
         this.tariffId = tariffId;
@@ -48,8 +48,7 @@ public class Tariff {
     }
 
 
-    public Tariff(Long tariffId, String tariffName, BigDecimal pricePerMonth, String speed)
-    {
+    public Tariff(Long tariffId, String tariffName, BigDecimal pricePerMonth, String speed) {
         this.tariffId = tariffId;
         this.tariffName = tariffName;
         this.pricePerMonth = pricePerMonth;
@@ -58,7 +57,6 @@ public class Tariff {
 
     public Tariff() {
     }
-
 
 
     @Override
@@ -71,5 +69,13 @@ public class Tariff {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

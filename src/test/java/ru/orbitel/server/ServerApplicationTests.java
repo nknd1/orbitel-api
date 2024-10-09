@@ -1,15 +1,23 @@
 package ru.orbitel.server;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
+import org.springframework.test.web.servlet.MockMvc;
+import ru.orbitel.server.model.ClientContract;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 class ServerApplicationTests {
 
     @Autowired
@@ -17,27 +25,29 @@ class ServerApplicationTests {
     @LocalServerPort
     private int localServerPort;
 
+    @Autowired
+    private MockMvc mockMvc;
+
     @Test
 	void contextLoads() {
-	}
+        // TODO document why this method is empty
+    }
 
     @Test
-    public void createTariff() throws Exception {
-        String tariff = """
-                {
-                    "tariff_name": "salam aleikum",
-                    "price_per_month": 0,
-                    "speed": "infiniti brat"
-                }""";
+    @DisplayName("tariff")
+    void getTariffs() throws Exception {
+        mockMvc.perform(get("/orbitel/tariffs"))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        ResponseEntity<String> postResponse = testRestTemplate.exchange(
-                "http://localhost:" + localServerPort + "/orbitel/tariffs",
-                HttpMethod.POST,
-                new HttpEntity<>(tariff, httpHeaders),
-                String.class
+    @Test
+    @DisplayName("ClienContract")
+    void getAllClientContracts() throws Exception {
+        ResponseEntity<ClientContract[]> getResponse = testRestTemplate.getForEntity(
+                "http://localhost:" + localServerPort + "/orbitel/client-contract",
+                ClientContract[].class
         );
-        assertEquals(HttpStatus.CREATED, postResponse.getStatusCode());
+        assertEquals(HttpStatus.OK, getResponse.getStatusCode());
     }
 }
