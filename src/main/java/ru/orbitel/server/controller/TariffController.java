@@ -2,7 +2,6 @@ package ru.orbitel.server.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.orbitel.server.model.Tariff;
 import ru.orbitel.server.service.TariffService;

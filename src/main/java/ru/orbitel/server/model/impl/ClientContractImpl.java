@@ -2,7 +2,7 @@ package ru.orbitel.server.model.impl;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.orbitel.server.model.ClientContract;
 import ru.orbitel.server.repository.ClientContractRepository;
 
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository
+@Component
 public class ClientContractImpl implements ClientContractRepository {
 
     private final JdbcTemplate jdbcTemplate;
