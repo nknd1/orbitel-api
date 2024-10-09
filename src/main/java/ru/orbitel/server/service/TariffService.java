@@ -1,5 +1,7 @@
 package ru.orbitel.server.service;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.orbitel.server.model.Tariff;
 import ru.orbitel.server.repository.TariffRepository;
@@ -14,7 +16,7 @@ public class TariffService {
         this.tariffRepository = tariffRepository;
     }
 
-    public List<Tariff> getTariffs() {
-        return tariffRepository.findAll();
+    public ResponseEntity<List<Tariff>> getTariffs() {
+        return new ResponseEntity<>(tariffRepository.findAll(), HttpStatus.OK);
     }
 }

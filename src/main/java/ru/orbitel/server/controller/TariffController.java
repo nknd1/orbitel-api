@@ -2,6 +2,7 @@ package ru.orbitel.server.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.orbitel.server.model.Tariff;
 import ru.orbitel.server.service.TariffService;
@@ -25,7 +26,7 @@ public class TariffController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/tariffs")
-    List<Tariff> getTariffs() {
+   public ResponseEntity<List<Tariff>> getTariffs() {
         return tariffService.getTariffs();
     }
 
