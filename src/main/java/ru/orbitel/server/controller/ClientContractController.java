@@ -1,5 +1,6 @@
 package ru.orbitel.server.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/orbitel")
 public class ClientContractController {
     private final ClientContractService clientContractService;
-
-    public ClientContractController(ClientContractService clientContractService) {
-        this.clientContractService = clientContractService;
-    }
 
     @GetMapping("/client-contract")
     public ResponseEntity<List<ClientContract>> getAllClientContracts() {
