@@ -1,6 +1,8 @@
 package ru.orbitel.server.service;
 
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.orbitel.server.model.ClientContract;
 import ru.orbitel.server.repository.ClientContractRepository;
@@ -15,7 +17,7 @@ public class ClientContractService {
         this.clientContractRepository = clientContractRepository;
     }
     @Cacheable("clientContracts")
-    public List<ClientContract> getAllClientContracts() {
-        return clientContractRepository.findAll();
+    public ResponseEntity<List<ClientContract>> getAllClientContracts() {
+        return new ResponseEntity<>(clientContractRepository.findAll(), HttpStatus.OK);
     }
 }

@@ -2,14 +2,10 @@ package ru.orbitel.server.impl;
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import ru.orbitel.server.mapper.TariffRowMapper;
 import ru.orbitel.server.model.Tariff;
 import ru.orbitel.server.repository.TariffRepository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -53,15 +49,5 @@ public class TariffImpl implements TariffRepository {
     public int deleteAll() {
         return 0;
     }
-    private static class TariffRowMapper implements RowMapper<Tariff> {
-        @Override
-        public Tariff mapRow(ResultSet rs, int rowNum) throws SQLException {
-           Tariff tariff = new Tariff();
-            tariff.setTariffId(rs.getLong("tariff_id"));
-            tariff.setTariffName(rs.getString("tariff_name"));
-            tariff.setPricePerMonth(rs.getBigDecimal("price_per_month"));
-            tariff.setSpeed(rs.getString("speed"));
-            return tariff;
-        }
-    }
+
 }

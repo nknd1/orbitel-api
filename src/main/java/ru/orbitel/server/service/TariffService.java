@@ -17,6 +17,10 @@ public class TariffService {
     }
 
     public ResponseEntity<List<Tariff>> getTariffs() {
-        return new ResponseEntity<>(tariffRepository.findAll(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(tariffRepository.findAll(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

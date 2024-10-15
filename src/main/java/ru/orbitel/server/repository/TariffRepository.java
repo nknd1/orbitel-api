@@ -1,10 +1,11 @@
 package ru.orbitel.server.repository;
 
 
+import org.springframework.stereotype.Repository;
 import ru.orbitel.server.model.Tariff;
 
 import java.util.List;
-
+@Repository
 public interface TariffRepository {
     int save(Tariff tariff);
 
